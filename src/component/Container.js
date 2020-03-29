@@ -77,10 +77,15 @@ export default class Container extends Component {
       toast.error("Please enter required information.");
       this.setState({errors: validationError});
     } else {
-      this.cleanForm();
-      console.log(this.props);
+      if(email === 'avanibataviya@gmail.com' && password === "A{32<6["){
+        this.cleanForm();
+        console.log(this.props);
 
-      this.props.history.push('/dashborad');
+        this.props.history.push('/dashborad');
+      }
+     else {
+       toast.error("Your email or password is incorrect");
+      }
     }
   };
 
