@@ -1,5 +1,4 @@
 const faker = require('faker');
-const puppeteer = require('puppeteer');
 
 const person = {
   email: faker.internet.email(),
@@ -10,25 +9,6 @@ const loginData = {
   email: 'avanibataviya@gmail.com',
   password: 'A{32<6['
 };
-
-// global variable
-let browser;
-let page;
-
-beforeAll(async () => {
-  // launch browser
-  browser = await puppeteer.launch(
-    {
-      headless: false, // Whether to run browser in headless mode. Default is true, here false means open chromium browser to check action visually
-      slowMo: 100, // slows down puppeteer operations by the specified amount of milliseconds
-      // devtools: true
-    }
-  );
-
-  // creates a new page in the opened browser
-  page = await browser.newPage();
-
-});
 
 beforeEach(async () => {
   await page.goto(URL, {waitUntil: 'domcontentloaded'});
@@ -75,6 +55,3 @@ describe('Login Functionality Testing', () => {
   }, timeOut);
 });
 
-afterAll(() => {
-  browser.close()
-});
